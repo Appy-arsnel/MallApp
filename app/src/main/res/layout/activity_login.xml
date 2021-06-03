@@ -41,6 +41,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputEmail"
+                android:background="@android:color/primary_text_light"
                 style="@style/parent"
                 android:layout_marginTop="@dimen/loginViewsMargin">
                 <EditText
@@ -53,6 +54,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputPassword"
+                android:background="@android:color/primary_text_light"
                 style="@style/parent"
                 android:layout_marginTop="@dimen/loginViewsMargin">
                 <EditText
@@ -83,15 +85,16 @@
                 app:initialCornerAngle="27dp"/>
 
             <TextView
+                android:id="@+id/Registerid"
                 style="@style/parent"
+                android:layout_marginTop="@dimen/loginViewsMargin"
+                android:gravity="center_horizontal"
+                android:onClick="onLoginClick"
+                android:text="New user? Register Now"
                 android:textAlignment="center"
-                android:textStyle="bold"
                 android:textColor="@color/themeColor"
                 android:textSize="17sp"
-                android:text="New user? Register Now"
-                android:layout_marginTop="@dimen/loginViewsMargin"
-                android:onClick="onLoginClick"
-                android:gravity="center_horizontal" />
+                android:textStyle="bold" />
 
 
             <LinearLayout

@@ -54,6 +54,7 @@
                         android:id="@+id/textInputName"
                         style="@style/parent"
                         android:layout_marginTop="@dimen/loginViewsMargin"
+                        android:background="@android:color/primary_text_light"
                         >
                         <EditText
                             android:id="@+id/editTextName"
@@ -61,11 +62,12 @@
                             android:inputType="textPersonName"
                             android:maxLines="1"
                             android:hint="Name"
-                            android:background="@android:color/primary_text_light"/>
+                          />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputEmail"
+                        android:background="@android:color/primary_text_light"
                         style="@style/parent"
                         android:layout_marginTop="@dimen/loginViewsMargin">
                         <EditText
@@ -77,6 +79,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputMobile"
+                        android:background="@android:color/primary_text_light"
                         style="@style/parent"
                         android:layout_marginTop="@dimen/loginViewsMargin">
                         <EditText
@@ -93,6 +96,7 @@
                         android:layout_marginTop="@dimen/loginViewsMargin">
                         <EditText
                             android:id="@+id/editTextPassword"
+                            android:background="@android:color/primary_text_light"
                             style="@style/modifiedEditText"
                             android:hint="@string/login_password_hint"
                             android:maxLines="1"
