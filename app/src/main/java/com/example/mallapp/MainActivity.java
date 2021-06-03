@@ -3,17 +3,32 @@ package com.example.mallapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ProgressBar;
+
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageMetadata;
+import com.google.firebase.storage.StorageReference;
 
 public class MainActivity extends AppCompatActivity {
 
 
-        // creating object of ViewPager
+
+
+
+
+    // creating object of ViewPager
         ViewPager mViewPager;
         ProgressBar progressBar;
         // images array
-        int[] images = {R.drawable.a1, R.drawable.a2, R.drawable.a3, R.drawable.a4,R.drawable.a5,R.drawable.a6};
+
+
+
+    int[] images;
 
         // Creating Object of ViewPagerAdapter
         ViewPagerAdapter mViewPagerAdapter;
@@ -24,11 +39,12 @@ public class MainActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
 
+
             // Initializing the ViewPager Object
             mViewPager = (ViewPager)findViewById(R.id.viewPagerMain);
 
             // Initializing the ViewPagerAdapter
-            mViewPagerAdapter = new ViewPagerAdapter(MainActivity.this, images);
+            mViewPagerAdapter = new ViewPagerAdapter(MainActivity.this);
 
             // Adding the Adapter to the ViewPager
             mViewPager.setAdapter(mViewPagerAdapter);

@@ -8,36 +8,45 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
+
+import com.bumptech.glide.Glide;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.util.Objects;
 
 class ViewPagerAdapter extends PagerAdapter {
 
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageReference=storage.getInstance().getReference();
     // Context object
     Context context;
 
     // Array of images
-    int[] images;
 
     // Layout Inflater
     LayoutInflater mLayoutInflater;
 
 
     // Viewpager Constructor
-    public ViewPagerAdapter(Context context, int[] images) {
+    public ViewPagerAdapter(Context context) {
         this.context = context;
-        this.images = images;
+
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    @Override
-    public int getCount() {
-        // return the number of images
-        return images.length;
-    }
+
+
+
 
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return view == ((LinearLayout) object);
+    }
+
+    @Override
+    public int getCount() {
+        return 0;
     }
 
     @NonNull
@@ -50,7 +59,7 @@ class ViewPagerAdapter extends PagerAdapter {
         ImageView imageView = (ImageView) itemView.findViewById(R.id.imageViewMain);
 
         // setting the image in the imageView
-        imageView.setImageResource(images[position]);
+        Glide.with(context).load("gs://mall-app-8b01d.appspot.com/ntcc/Lets get Started/a1.png").into(imageView);
 
         // Adding the View
         Objects.requireNonNull(container).addView(itemView);

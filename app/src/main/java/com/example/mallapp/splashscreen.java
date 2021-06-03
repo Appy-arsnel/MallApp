@@ -34,7 +34,7 @@ public class splashscreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(splashscreen.this, MainActivity.class);
+                Intent i = new Intent(splashscreen.this, LoginActivity.class);
                 startActivity(i);
             }
         },SPLASH_DISPLAY_LENGTH);
