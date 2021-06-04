@@ -92,11 +92,12 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputPassword"
+                        android:background="@android:color/primary_text_light"
                         style="@style/parent"
                         android:layout_marginTop="@dimen/loginViewsMargin">
                         <EditText
                             android:id="@+id/editTextPassword"
-                            android:background="@android:color/primary_text_light"
+
                             style="@style/modifiedEditText"
                             android:hint="@string/login_password_hint"
                             android:maxLines="1"
@@ -117,7 +118,7 @@
                     <TextView
                         style="@style/parent"
                         android:layout_marginTop="@dimen/loginViewsMargin"
-                        android:onClick="onLoginClick"
+
                         android:text="Already have an account?"
                         android:textAlignment="center"
                         android:textColor="@color/themeColor"

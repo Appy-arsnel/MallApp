@@ -16,14 +16,17 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -33,8 +36,10 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private EditText password;
     private Button btnRegister;
-    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://mall-app-8b01d-default-rtdb.asia-southeast1.firebasedatabase.app/");
     private DatabaseReference reff;
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,47 +51,50 @@ public class RegistrationActivity extends AppCompatActivity {
         mobileno = findViewById(R.id.editTextMobile);
         password = findViewById(R.id.editTextPassword);
         btnRegister = findViewById(R.id.cirRegisterButton);
+
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String rname = name.getText().toString();
                 String remail = email.getText().toString();
-                String rmobileno = mobileno.getText().toString();
+                String rmobileno = mobileno.getText().toString().trim();
                 String rpas = password.getText().toString();
                 user users = new user(rname, remail, rmobileno, rpas);
-                reff = FirebaseDatabase.getInstance().getReference("Users");
 
-                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                reff=firebaseDatabase.getReference();
+
+
                 if (validate(remail, rpas)) {
                     firebaseAuth.createUserWithEmailAndPassword(remail, rpas).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-                                if (user == null) {
-                                    // No session user
-                                    return;
-                                }
-                                String userId = user.getUid();
-                                users.setName(rname);
-                                users.setEmail(remail);
-                                users.setMobileno(rmobileno);
-                                users.setPassword(rpas);
+                                FirebaseUser usser = firebaseAuth.getInstance().getCurrentUser();
+
+                                String userId = usser.getUid().trim();
+                                reff.child("User").child(userId).setValue(users);
 
 
-                                reff.child(userId).setValue(users);
 
-                                startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
+
                                 Toast.makeText(RegistrationActivity.this, "Account created", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
+
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(),task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+
                             }
 
                         }
                     });
                 }
             }
-
         });
+
+
+
     }
 
 
@@ -108,4 +116,6 @@ public class RegistrationActivity extends AppCompatActivity {
             window.setStatusBarColor(getResources().getColor(R.color.register_bk_color));
         }
     }
+
+
 }

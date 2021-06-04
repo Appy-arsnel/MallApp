@@ -8,6 +8,7 @@ import android.media.MediaParser;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,41 +22,56 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText email;
-
+    private Button login;
     private EditText password;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        email= findViewById(R.id.editTextEmail);
-        password= findViewById(R.id.editTextPassword);
         if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.M){
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
         setContentView(R.layout.activity_login);
-        final TextView Register=   findViewById(R.id.Registerid);
+        email= findViewById(R.id.editTextEmail);
+        password= findViewById(R.id.editTextPassword);
+        login=findViewById(R.id.cirLoginButton);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                    String inputemail= email.getText().toString().trim();
+                    String inputPassword = password.getText().toString().trim();
+
+                    firebaseAuth.signInWithEmailAndPassword(inputemail,inputPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+
+                            Toast.makeText(LoginActivity.this, "Successful Log in", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+
+                        }
+                    });
+
+                }
+
+        });
+
+        final TextView Register= findViewById(R.id.Registerid);
+
         Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(v.getContext(),RegistrationActivity.class);
-               startActivity(i);
+                startActivity(i);
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
             }
         });
     }
 
-    public void onLoginClick(View view){
-        String inputemail= email.getText().toString();
-        String inputPassword = password.getText().toString();
 
-        firebaseAuth.signInWithEmailAndPassword(inputemail,inputPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                Toast.makeText(LoginActivity.this, "Successful Log in",Toast.LENGTH_SHORT).show();
-                   startActivity(new Intent(LoginActivity.this,MainActivity.class));
 
-            }
-        });
+
     }
-}
+
