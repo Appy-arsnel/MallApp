@@ -3,6 +3,7 @@ package com.example.mallapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -12,8 +13,16 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
@@ -24,9 +33,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -52,46 +60,8 @@ public class RegistrationActivity extends AppCompatActivity {
         password = findViewById(R.id.editTextPassword);
         btnRegister = findViewById(R.id.cirRegisterButton);
 
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String rname = name.getText().toString();
-                String remail = email.getText().toString();
-                String rmobileno = mobileno.getText().toString().trim();
-                String rpas = password.getText().toString();
-                user users = new user(rname, remail, rmobileno, rpas);
 
-                reff=firebaseDatabase.getReference();
-
-
-                if (validate(remail, rpas)) {
-                    firebaseAuth.createUserWithEmailAndPassword(remail, rpas).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-
-                                FirebaseUser usser = firebaseAuth.getInstance().getCurrentUser();
-
-                                String userId = usser.getUid().trim();
-                                reff.child("User").child(userId).setValue(users);
-
-
-
-
-                                Toast.makeText(RegistrationActivity.this, "Account created", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
-
-                            }
-                            else{
-                                Toast.makeText(getApplicationContext(),task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-
-                            }
-
-                        }
-                    });
-                }
-            }
-        });
+        normalRegister();
 
 
 
@@ -118,4 +88,49 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
 
+
+
+
+private void normalRegister(){
+    btnRegister.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            String rname = name.getText().toString();
+            String remail = email.getText().toString();
+            String rmobileno = mobileno.getText().toString().trim();
+            String rpas = password.getText().toString();
+            user users = new user(rname, remail, rmobileno);
+
+            reff=firebaseDatabase.getReference();
+
+
+            if (validate(remail, rpas)) {
+                firebaseAuth.createUserWithEmailAndPassword(remail, rpas).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+
+                            FirebaseUser usser = firebaseAuth.getInstance().getCurrentUser();
+
+                            String userId = usser.getUid().trim();
+                            reff.child("User").child(userId).setValue(users);
+
+
+
+
+                            Toast.makeText(RegistrationActivity.this, "Account created", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
+
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(),task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                    }
+                });
+            }
+        }
+    });
+}
 }

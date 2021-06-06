@@ -4,6 +4,8 @@
     <string name="login_password_hint">Password</string>
 
     <!--for facebook login-->
+    <string name="facebook_app_id">567151351126220</string>
+    <string name="fb_login_protocol_scheme">fb567151351126220</string>
 
     <!--facebook login ends-->
 

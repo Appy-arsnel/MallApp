@@ -5,16 +5,16 @@ public class user {
     private String email;
     private String mobileno;
 
-    private String password ;
+
     public user()
     {
 
     }
-    public user(String name, String email, String mobileno, String password) {
+    public user(String name, String email, String mobileno) {
         this.name = name;
         this.email = email;
         this.mobileno = mobileno;
-        this.password = password;
+
     }
 
     public String getName() {
@@ -41,13 +41,7 @@ public class user {
         this.mobileno = mobileno;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
 
 
