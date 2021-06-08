@@ -33,14 +33,18 @@
             android:theme="@style/Theme.AppCompat.NoActionBar">
           <intent-filter>
 
+              <action android:name="android.intent.action.MAIN" />
               <category android:name="android.intent.category.BROWSABLE" />
               <category android:name="android.intent.category.DEFAULT" />
           </intent-filter>
 
            </activity>
+
+
+        <activity android:name=".GoogleSignInActivity"  android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -48,7 +52,8 @@
         </activity>
         <meta-data android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>
-
+        <meta-data android:name="com.facebook.sdk.AutoLogAppEventsEnabled"
+            android:value="false"/>
         <activity android:name="com.facebook.FacebookActivity"
             android:configChanges=
                 "keyboard|keyboardHidden|screenLayout|screenSize|orientation"

@@ -3,6 +3,11 @@
     <dimen name="headerTextSize">25sp</dimen>
     <dimen name="newsMoreTextSize">12sp</dimen>
     <dimen name="loginViewsMargin">20dp</dimen>
+    <dimen name="medium">16dp</dimen>
+
+    <dimen name="small">8dp</dimen>
+
+    <dimen name="xsmall">4dp</dimen>
 
     <!--start activity-->
 

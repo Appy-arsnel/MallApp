@@ -19,6 +19,17 @@
 
 
     <!--colors for crop activity-->
+    <color name="colorPrimar">#008577</color>
+
+    <color name="colorPrimarDark">#00574B</color>
+
+    <color name="colorAccen">#D81B60</color>
+
+    <color name="textColor">#060606</color>
+
+    <color name="white">#ffffff</color>
+
+    <color name="orange">#FA6B1B</color>
     <!--<color name="ucrop_color_toolbar">@color/teal_500</color>-->
     <!--<color name="ucrop_color_statusbar">@color/teal_700</color>-->
     <!--<color name="ucrop_color_widget_active">@color/teal_500</color>-->

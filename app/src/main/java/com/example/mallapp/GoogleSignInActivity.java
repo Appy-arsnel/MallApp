@@ -19,6 +19,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * Demonstrate Firebase Authentication using a Google ID Token.
@@ -27,7 +29,8 @@ public class GoogleSignInActivity extends Activity {
 
     private static final String TAG = "GoogleActivity";
     private static final int RC_SIGN_IN = 9001;
-
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://mall-app-8b01d-default-rtdb.asia-southeast1.firebasedatabase.app/");
+    DatabaseReference reff;
     // [START declare_auth]
     private FirebaseAuth mAuth;
     // [END declare_auth]
@@ -47,6 +50,7 @@ public class GoogleSignInActivity extends Activity {
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         // [END config_signin]
 
+        reff = firebaseDatabase.getReference();
         // [START initialize_auth]
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -115,5 +119,25 @@ public class GoogleSignInActivity extends Activity {
 
     private void updateUI(FirebaseUser user) {
 
+        String name;
+        if (user != null) {
+            // Name, email address, and profile photo Url
+
+            name = user.getDisplayName();
+            String email = user.getEmail();
+            String uid = user.getUid();
+            String rmobileno = user.getPhoneNumber();
+            user users = new user(name, email, rmobileno);
+            // Check if user's email is verified
+            boolean emailVerified = user.isEmailVerified();
+
+            reff.child("User").child(uid).setValue(users);
+
+
+            // The user's ID, unique to the Firebase project. Do NOT use this value to
+            // authenticate with your backend server, if you have one. Use
+            // FirebaseUser.getIdToken() instead.
+
+        }
     }
 }
