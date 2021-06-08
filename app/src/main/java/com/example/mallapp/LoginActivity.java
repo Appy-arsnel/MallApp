@@ -51,11 +51,12 @@ public class LoginActivity extends AppCompatActivity {
   private Button googlereg;
 private FirebaseAuth.AuthStateListener authStateListener;
 
-    private static final String TAG = "FacebookAuthentication";
+    private static final String TAG = "FacebookLogin";
 
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://mall-app-8b01d-default-rtdb.asia-southeast1.firebasedatabase.app/");
 
     private DatabaseReference reff;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,24 +73,25 @@ private FirebaseAuth.AuthStateListener authStateListener;
         loginButton=findViewById(R.id.login_button);
         email= findViewById(R.id.editTextEmail);
         password= findViewById(R.id.editTextPassword);
-        googlereg=findViewById(R.id.glogin_button);
+       // googlereg=findViewById(R.id.);
 
         login=findViewById(R.id.cirLoginButton);
 
         reff=firebaseDatabase.getReference();
         normalLogin();
         register();
-        googlesignin();
+        facebookLogins();
+        //googlesignin();
     }
 
-    private void googlesignin() {
+    /*private void googlesignin() {
         googlereg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
              startActivity(new Intent(LoginActivity.this,GoogleSignInActivity.class));
             }
         });
-    }
+    }*/
 
 
 
@@ -140,7 +142,8 @@ private FirebaseAuth.AuthStateListener authStateListener;
                 Toast.makeText(LoginActivity.this, "clicked",
                         Toast.LENGTH_SHORT).show();
                 mCallbackManager = CallbackManager.Factory.create();
-                LoginManager.getInstance().registerCallback(mCallbackManager,
+                loginButton.setReadPermissions("email", "public_profile");
+                loginButton.registerCallback(mCallbackManager,
                         new FacebookCallback<LoginResult>() {
                             @Override
                             public void onSuccess(LoginResult loginResult) {
@@ -148,49 +151,32 @@ private FirebaseAuth.AuthStateListener authStateListener;
                                 handleFacebookAccessToken(loginResult.getAccessToken());
                                 Toast.makeText(LoginActivity.this, "Successful Log in", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
+
                             }
 
                             @Override
                             public void onCancel() {
                                 Log.d(TAG,"onCancel");
-
+                                Toast.makeText(LoginActivity.this, "Successful ", Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
                             public void onError(FacebookException exception) {
                                 Log.d(TAG,"onError"+ exception);
+                                Toast.makeText(LoginActivity.this, " Log in", Toast.LENGTH_SHORT).show();
                             }
                         });
             }
         });
-        authStateListener=new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user= firebaseAuth.getCurrentUser();
-                if(user!=null){
-                    updateUI(user);
-                }
-                else
-                {
-                    updateUI(null);
-                }
-            }
-        };
-        AccessTokenTracker accessTokenTracker = new AccessTokenTracker() {
-            @Override
-            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
-                if (currentAccessToken == null) {
-                    firebaseAuth.signOut();
-                }
-            }
-        };
+
     }
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+
 
     }
 
@@ -213,7 +199,7 @@ private FirebaseAuth.AuthStateListener authStateListener;
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                            Toast.makeText(LoginActivity.this, "Authentication failed:Same email found",
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
@@ -249,13 +235,10 @@ private FirebaseAuth.AuthStateListener authStateListener;
     @Override
     protected void onStart() {
         super.onStart();
-        firebaseAuth.addAuthStateListener(authStateListener);
-    }
+       FirebaseUser  userz=firebaseAuth.getCurrentUser();
+        if(userz!=null)
+            startActivity(new Intent(LoginActivity.this,MainActivity.class));
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        firebaseAuth.removeAuthStateListener(authStateListener);
     }
 
 
