@@ -1,10 +1,14 @@
 package com.example.mallapp;
 
+import android.net.Uri;
+
 public class user {
     private String name ;
     private String email;
     private String mobileno;
 
+
+    private Uri photourl;
 
     public user()
     {
@@ -42,6 +46,13 @@ public class user {
     }
 
 
+    public Uri getPhotourl() {
+        return photourl;
+    }
+
+    public void setPhotourl(Uri photourl) {
+        this.photourl = photourl;
+    }
 
 
 
