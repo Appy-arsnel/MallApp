@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.util.Log;
 import android.content.Intent;
@@ -17,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.facebook.AccessToken;
 
 import com.facebook.CallbackManager;
@@ -164,10 +167,8 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, "clicked",
                         Toast.LENGTH_SHORT).show();
                 az=true;
-                AccessToken accessToken = AccessToken.getCurrentAccessToken();
-                boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
                 mCallbackManager = CallbackManager.Factory.create();
-                LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Arrays.asList("public_profile","email"));
+                LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Arrays.asList("email","public_profile"));
 
                 LoginManager.getInstance().registerCallback(mCallbackManager,
                         new FacebookCallback<LoginResult>() {
@@ -178,7 +179,6 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, "Successful Log in", Toast.LENGTH_SHORT).show();
                                 handleFacebookAccessToken(loginResult.getAccessToken());
 
-                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
 
                             }
 
@@ -257,9 +257,11 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
+
+
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             updateUI(user);
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
@@ -279,11 +281,17 @@ public class LoginActivity extends AppCompatActivity {
              name = user.getDisplayName();
             String email = user.getEmail();
             String uid = user.getUid();
-            Uri photourl= user.getPhotoUrl();
             user users = new user();
+            String photourl ;
+                 photourl= user.getPhotoUrl().toString();
+                users.setPhotourl(photourl);
+            SharedPreferences sharedPref = getSharedPreferences("MySharedPref",MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString("photourl",photourl);
+            editor.apply();
             users.setEmail(email);
             users.setName(name);
-            users.setPhotourl(photourl);
+
             // Check if user's email is verified
             boolean emailVerified = user.isEmailVerified();
 

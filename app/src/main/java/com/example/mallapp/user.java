@@ -8,7 +8,7 @@ public class user {
     private String mobileno;
 
 
-    private Uri photourl;
+    private String photourl;
 
     public user()
     {
@@ -46,11 +46,11 @@ public class user {
     }
 
 
-    public Uri getPhotourl() {
+    public String getPhotourl() {
         return photourl;
     }
 
-    public void setPhotourl(Uri photourl) {
+    public void setPhotourl(String photourl) {
         this.photourl = photourl;
     }
 

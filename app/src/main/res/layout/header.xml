@@ -15,7 +15,7 @@
         <ImageView
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:id="@+id/photo"
+            android:id="@+id/photoss"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
