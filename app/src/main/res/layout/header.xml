@@ -12,18 +12,7 @@
         android:layout_height="match_parent"
       >
 
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:id="@+id/photoss"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="318dp"
-            android:layout_marginRight="318dp"
-            android:layout_marginBottom="95dp"
-            android:background="@drawable/grey_circular_border"
-            android:padding="12dp" />
+
 
         <TextView
             android:id="@+id/name"
