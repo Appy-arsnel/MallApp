@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "550955440003",
+    "firebase_url": "https://mall-app-8b01d-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "mall-app-8b01d",
     "storage_bucket": "mall-app-8b01d.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "550955440003-oo5dh56qaoso9ohp314qh1ik1p8p32v9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mallapp",
+            "certificate_hash": "c5fcb08dc7655992794dc389800fa8708dc1119a"
+          }
+        },
         {
           "client_id": "550955440003-uadpev5p7u527eqlusuu8g0i470nsste.apps.googleusercontent.com",
           "client_type": 3
