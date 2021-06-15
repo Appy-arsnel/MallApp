@@ -77,16 +77,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <fragment
-                    android:id="@+id/navHostFragment"
-
-                    android:name="androidx.navigation.fragment.NavHostFragment"
+                <FrameLayout
+                    android:id="@+id/flFragment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_above="@+id/bottomNav_view"
+                    />
 
-                    android:layout_gravity="start"
-                    app:defaultNavHost="true"
-                    app:navGraph="@navigation/nav_graph" />
+
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/bottomNav_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:background="@color/colorPrimaryDark"
+                    app:itemIconTint="@color/white"
+                    app:itemTextColor="@color/whiteTextColor"
+                    app:menu="@menu/bottom_nav_menu"
+                    />
 
             </RelativeLayout>
 
@@ -96,18 +106,6 @@
 
     </androidx.drawerlayout.widget.DrawerLayout>
 
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNav_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
-        android:background="@color/colorPrimaryDark"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/whiteTextColor"
-        app:menu="@menu/bottom_nav_menu" />
 
 
 </RelativeLayout>

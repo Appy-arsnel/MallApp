@@ -12,13 +12,14 @@ import androidx.fragment.app.Fragment;
 public class ParkingFragment extends Fragment {
 
 
+
+
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-
-
-      return inflater.inflate(R.layout.fragment_parking, container, false);
-
+        return inflater.inflate(R.layout.fragment_parking,container,false);
     }
 }
+

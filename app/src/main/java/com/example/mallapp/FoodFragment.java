@@ -12,11 +12,20 @@ import androidx.fragment.app.Fragment;
 
 
 public class FoodFragment extends Fragment {
+    public static FoodFragment newInstance(){
+        FoodFragment fragment=new FoodFragment();
+        return fragment;
+    }
+
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView=inflater.inflate(R.layout.fragment_food,container,false);
+
         return inflater.inflate(R.layout.fragment_food,container,false);
     }
 }
+
+

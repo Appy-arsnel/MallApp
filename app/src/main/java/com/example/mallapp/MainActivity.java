@@ -56,17 +56,20 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
-
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
     DatabaseReference reff;
     ImageView photo;
     BottomNavigationView navView;
+
+    private BottomNavigationView bottomNavigationView;
+
     Fragment currentFragment = null;
     FragmentTransaction ft;
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -87,6 +90,54 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
 
         toggle.syncState();
+
+        bottomNavigationView = findViewById(R.id.bottomNav_view);
+        ft = getSupportFragmentManager().beginTransaction();
+        currentFragment = new HomeFragment();
+        ft.replace(R.id.flFragment, currentFragment);
+        ft.commit();
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment fragment;
+                switch (item.getItemId()) {
+                    case R.id.homess:
+
+                        currentFragment = new HomeFragment();
+                        ft = getSupportFragmentManager().beginTransaction();
+                        ft.replace(R.id.flFragment, currentFragment);
+
+
+                        ft.commit();
+                        break;
+                    case R.id.parkingss:
+
+                        currentFragment = new ParkingFragment();
+                        ft = getSupportFragmentManager().beginTransaction();
+                        ft.replace(R.id.flFragment, currentFragment);
+
+                        ft.commit();
+
+                        break;
+                    case R.id.food:
+                        currentFragment = new FoodFragment();
+                        ft = getSupportFragmentManager().beginTransaction();
+                        ft.replace(R.id.flFragment, currentFragment);
+                        ft.commit();
+                        break;
+                    case R.id.shops:
+                        currentFragment = new ShopFragment();
+                        ft = getSupportFragmentManager().beginTransaction();
+                        ft.replace(R.id.flFragment, currentFragment);
+                        ft.commit();
+                        break;
+                }
+
+
+                return true;
+            }
+        });
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -113,58 +164,19 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        ft = getSupportFragmentManager().beginTransaction();
-        currentFragment = new HomeFragment();
-        ft.replace(R.id.navHostFragment, currentFragment);
-        ft.commit();
-        navView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
-            @Override
-            public void onNavigationItemReselected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.navigation_home:
-
-                        currentFragment = new HomeFragment();
-                        ft = getSupportFragmentManager().beginTransaction();
-                        ft.replace(R.id.navHostFragment, currentFragment);
-                        ft.commit();
-                        break;
-                    case R.id.navigation_parking:
-                        currentFragment = new ParkingFragment();
-                        ft = getSupportFragmentManager().beginTransaction();
-                        ft.replace(R.id.navHostFragment, currentFragment);
-                        ft.commit();
-                        break;
-                    case R.id.navigation_food:
-                        currentFragment = new FoodFragment();
-                        ft = getSupportFragmentManager().beginTransaction();
-                        ft.replace(R.id.navHostFragment, currentFragment);
-                        ft.commit();
-                        break;
-                    case R.id.navigation_shop:
-                        currentFragment = new ShopFragment();
-                        ft = getSupportFragmentManager().beginTransaction();
-                        ft.replace(R.id.navHostFragment, currentFragment);
-                        ft.commit();
-                        break;
-
-                }
-
-
-            }
-        });
 
 
     }
 
-        @Override
-        public void onBackPressed () {
-            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                drawerLayout.closeDrawer(GravityCompat.START);
-            } else {
-                super.onBackPressed();
-            }
-
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
         }
 
-
     }
+
+
+}
