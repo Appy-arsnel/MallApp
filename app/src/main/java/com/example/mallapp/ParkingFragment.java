@@ -18,7 +18,7 @@ public class ParkingFragment extends Fragment {
 
 
 
-        View view = inflater.inflate(R.layout.fragment_parking, container, false);
-        return view;
+      return inflater.inflate(R.layout.fragment_parking, container, false);
+
     }
 }

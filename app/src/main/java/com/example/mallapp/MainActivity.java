@@ -25,6 +25,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import com.bumptech.glide.Glide;
 import com.facebook.AccessToken;
@@ -39,6 +45,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -47,7 +54,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
 
 
     DrawerLayout drawerLayout;
@@ -55,7 +62,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
     DatabaseReference reff;
     ImageView photo;
-
+    BottomNavigationView navView;
+    Fragment currentFragment = null;
+    FragmentTransaction ft;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,65 +73,98 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_main);
         drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView=findViewById(R.id.nav_view);
-        toolbar=findViewById(R.id.toolbar);
-
+        navigationView = findViewById(R.id.nav_view);
+        toolbar = findViewById(R.id.toolbar);
+        navView = findViewById(R.id.bottomNav_view);
         setSupportActionBar(toolbar);
-        photo=findViewById(R.id.photo);
-        SharedPreferences sh = getSharedPreferences("MySharedPref",MODE_PRIVATE);
+        photo = findViewById(R.id.photo);
+        SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_PRIVATE);
         String s1 = sh.getString("photourl", "");
 
         Glide.with(getApplicationContext()).load(s1).centerCrop().placeholder(R.drawable.ic_back_img).into(photo);
         navigationView.bringToFront();
-        ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
 
         toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.Settings:
+                        Toast.makeText(MainActivity.this, "Settings", Toast.LENGTH_SHORT).show();
+                        break;
+
+                    case R.id.SignOut:
+
+                        FirebaseAuth.getInstance().signOut();
+                        LoginManager.getInstance().logOut();
+                        GoogleSignInOptions gso = new GoogleSignInOptions.
+                                Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).
+                                build();
+
+                        GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(MainActivity.this, gso);
+                        googleSignInClient.signOut();
+
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                        Toast.makeText(MainActivity.this, "Signed out", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+                return true;
+            }
+        });
+        ft = getSupportFragmentManager().beginTransaction();
+        currentFragment = new HomeFragment();
+        ft.replace(R.id.navHostFragment, currentFragment);
+        ft.commit();
+        navView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navigation_home:
+
+                        currentFragment = new HomeFragment();
+                        ft = getSupportFragmentManager().beginTransaction();
+                        ft.replace(R.id.navHostFragment, currentFragment);
+                        ft.commit();
+                        break;
+                    case R.id.navigation_parking:
+                        currentFragment = new ParkingFragment();
+                        ft = getSupportFragmentManager().beginTransaction();
+                        ft.replace(R.id.navHostFragment, currentFragment);
+                        ft.commit();
+                        break;
+                    case R.id.navigation_food:
+                        currentFragment = new FoodFragment();
+                        ft = getSupportFragmentManager().beginTransaction();
+                        ft.replace(R.id.navHostFragment, currentFragment);
+                        ft.commit();
+                        break;
+                    case R.id.navigation_shop:
+                        currentFragment = new ShopFragment();
+                        ft = getSupportFragmentManager().beginTransaction();
+                        ft.replace(R.id.navHostFragment, currentFragment);
+                        ft.commit();
+                        break;
+
+                }
+
+
+            }
+        });
+
 
     }
 
+        @Override
+        public void onBackPressed () {
+            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.closeDrawer(GravityCompat.START);
+            } else {
+                super.onBackPressed();
+            }
 
+        }
 
-    @Override
-    public void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START))
-        {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else{
-            super.onBackPressed();
-        }
 
     }
-
-
-
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.Settings:
-                Toast.makeText(this,"Settings",Toast.LENGTH_SHORT).show();
-                break;
-
-            case R.id.SignOut:
-
-                FirebaseAuth.getInstance().signOut();
-                LoginManager.getInstance().logOut();
-                GoogleSignInOptions gso = new GoogleSignInOptions.
-                        Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).
-                        build();
-
-                GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(this, gso);
-                googleSignInClient.signOut();
-
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                Toast.makeText(this,"Signed out",Toast.LENGTH_SHORT).show();
-     break;
-        }
-       return true;
-    }
-
-
-}
