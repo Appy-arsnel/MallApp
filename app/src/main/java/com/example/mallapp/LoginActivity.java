@@ -264,7 +264,7 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            Log.i(TAG, "signInWithCredential:failure", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed:Same email found",
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
@@ -315,7 +315,10 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(LoginActivity.this,MainActivity.class));
 
     }
-
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 
 }
 
