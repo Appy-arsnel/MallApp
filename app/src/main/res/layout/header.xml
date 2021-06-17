@@ -2,11 +2,12 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="220dp"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/violet_circular_border"
+    android:background="@drawable/ack_select"
 
     >
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

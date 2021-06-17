@@ -8,8 +8,7 @@
 
     >
 
-    <androidx.drawerlayout.widget.DrawerLayout
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.drawerlayout.widget.DrawerLayout xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,10 +22,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            app:headerLayout="@layout/header"
-            app:menu="@menu/menu"
-            android:background="@color/colorPrimaryDark"
-            app:itemTextColor="@color/whiteTextColor">
+            android:background="@drawable/ack_select"
+            app:itemTextColor="@color/black"
+            app:menu="@menu/menu">
 
 
         </com.google.android.material.navigation.NavigationView>
@@ -37,41 +35,27 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
+            <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
-                android:fitsSystemWindows="true"
-                app:title="MAll APP"
-                app:titleTextColor="@android:color/white">
+                android:layout_marginTop="28dp"
+                android:theme="@style/AppTheme"
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                >
 
-
-                </LinearLayout>
-
-                <RelativeLayout
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="@dimen/medium">
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@drawable/back_tabs"
+                    app:popupTheme="@style/AppTheme"
+                    app:titleTextColor="@android:color/background_dark">
 
-                    <ImageView
-                        android:id="@+id/photo"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_alignParentRight="true"
-                        android:padding="12dp" />
+                    <include layout="@layout/content_main" />
+                </androidx.appcompat.widget.Toolbar>
 
 
-                </RelativeLayout>
-
-            </androidx.appcompat.widget.Toolbar>
+            </com.google.android.material.appbar.AppBarLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -81,22 +65,19 @@
                     android:id="@+id/flFragment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_above="@+id/bottomNav_view"
-                    />
+                    android:layout_above="@+id/bottomNav_view" />
 
 
-                <com.google.android.material.bottomnavigation.BottomNavigationView
+                <com.ismaeldivita.chipnavigation.ChipNavigationBar
                     android:id="@+id/bottomNav_view"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="?attr/actionBarSize"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginEnd="0dp"
-                    android:background="@color/colorPrimaryDark"
-                    app:itemIconTint="@color/white"
-                    app:itemTextColor="@color/whiteTextColor"
-                    app:menu="@menu/bottom_nav_menu"
-                    />
+                    app:cnb_iconColor="#f8785b"
+                    android:background="@drawable/rounded"
+                    app:cnb_menuResource="@menu/bottom_nav_menu" >
+
+                </com.ismaeldivita.chipnavigation.ChipNavigationBar>
 
             </RelativeLayout>
 
@@ -105,7 +86,6 @@
 
 
     </androidx.drawerlayout.widget.DrawerLayout>
-
 
 
 </RelativeLayout>

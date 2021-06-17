@@ -16,7 +16,7 @@
     <color name="whiteTextColor">#fff</color>
     <color name="primaryTextColor">#11CFC5</color>
 
-
+    <color name="colorPri">#37474F</color>
 
     <!--colors for crop activity-->
     <color name="colorPrimar">#008577</color>
@@ -34,6 +34,12 @@
     <!--<color name="ucrop_color_statusbar">@color/teal_700</color>-->
     <!--<color name="ucrop_color_widget_active">@color/teal_500</color>-->
 
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
 
+    <color name="black">#FF000000</color>
 
 </resources>
