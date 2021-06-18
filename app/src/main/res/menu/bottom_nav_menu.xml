@@ -6,6 +6,7 @@
 
     <item android:title="Home"
         android:id="@+id/homess"
+        android:enabled="true"
         android:icon="@drawable/ic_baseline_home_24"
         app:cnb_iconColor="#fff"
         app:cnb_textColor="#fff"
@@ -27,7 +28,7 @@
 
     <item android:title="Navigation"
         android:id="@+id/navigation"
-        android:icon="@drawable/ic_baseline_shopping_cart_24"
+        android:icon="@drawable/ic_baseline_navigation_24"
         app:cnb_backgroundColor="#f8785b"
         app:cnb_iconColor="#fff"
         app:cnb_textColor="#fff"/>
