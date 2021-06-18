@@ -89,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
         item2=findViewById(R.id.item2);
         item3=findViewById(R.id.item3);
         select=findViewById(R.id.select);
+        item2.setTextColor(Color.BLACK);
+        item3.setTextColor(Color.BLACK);
         def=item2.getTextColors();
         item1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
         currentFragment = new HomeFragment();
         ft.replace(R.id.flFragment, currentFragment);
         ft.commit();
-
+       bottomNavigationView.setItemSelected(R.id.homess,true);
         bottomNavigationView.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
             public void onItemSelected(int id) {
@@ -188,9 +190,7 @@ public class MainActivity extends AppCompatActivity {
                         ft.commit();
                         break;
 
-                    default:
-                        id= R.id.homess;
-                        break;
+
                 }
 
 

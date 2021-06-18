@@ -2,15 +2,184 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">    <TextView
-    android:layout_width="200dp"
-    android:layout_height="50dp"
-android:layout_centerInParent="true"
-    android:text="Parking"
-    android:textSize="40dp"
-    android:textStyle="bold" />
-</RelativeLayout>
+   >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView3" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="#11c9ea"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="SELECT A PAY METHOD"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    android:textSize="12dp"
+                    android:gravity="center_vertical|center_horizontal" />
+
+            </LinearLayout>
+            <androidx.cardview.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardCornerRadius="4dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="16dp">
+
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#e8e8e8"
+                        android:paddingTop="10dp">
+
+                        <RadioButton
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:checked="true"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="PayPal"
+                            android:textColor="#3b3d3e"
+                            android:textStyle="bold"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit"
+                        android:paddingLeft="60dp"
+                        android:background="#e8e8e8"
+                        android:paddingBottom="20dp"
+                        android:textSize="10dp" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingTop="10dp">
+
+                        <RadioButton
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Check Payment"
+                            android:textColor="#3b3d3e"
+                            android:textStyle="bold"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Please send your cheque to Store Name, Store Street, Store Town, Store State/County, Store Postcode."
+                        android:paddingLeft="60dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="20dp"
+                        android:textSize="10dp" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingTop="10dp">
+
+                        <RadioButton
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Direct Bank Transfer"
+                            android:textColor="#3b3d3e"
+                            android:textStyle="bold"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.."
+                        android:paddingLeft="60dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="20dp"
+                        android:textSize="10dp" />
+
+
+                </RadioGroup>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="PLACE ORDER"
+                android:background="@drawable/green_rec_bkg"
+                android:layout_gravity="center"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginRight="70dp"
+                android:layout_marginLeft="70dp"
+                android:clickable="true"
+                android:onClick="GoToMainOnClick" />
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="CANCEL"
+                android:id="@+id/button"
+                android:background="@drawable/big_grey_btn"
+                android:layout_gravity="center"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:layout_marginBottom="40dp"
+                android:layout_marginRight="70dp"
+                android:layout_marginLeft="70dp"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
 </RelativeLayout>
