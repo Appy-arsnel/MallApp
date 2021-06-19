@@ -1,370 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/scrollView2" >
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-black"
+            android:textStyle="bold"
+            android:text="FoodStore"
+            android:textColor="#333333"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp">
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:text="ADD TO WISHLIST"
-                    android:background="@drawable/blue_btn_bkg"
-                    android:layout_gravity="center"
-                    android:textColor="#ffffff"
-                    android:textStyle="bold"
-                    android:textSize="12dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="1" />
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:text="ADD TO CART"
-                    android:background="@drawable/lt_green_bkg"
-                    android:layout_gravity="center"
-                    android:textColor="#ffffff"
-                    android:textStyle="bold"
-                    android:textSize="12dp"
-                    android:layout_weight="1" />
-            </LinearLayout>
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_cart" />
 
-            <androidx.cardview.widget.CardView
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:layout_gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                card_view:cardCornerRadius="4dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp">
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/search_bg"
+            android:drawableLeft="@drawable/ic_search_black_24dp"
+            android:drawablePadding="16dp"
+            android:ems="10"
+            android:hint="Search..."
+            android:inputType="textPersonName"
+            android:paddingStart="16dp"
+            android:singleLine="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-black"
+            android:textStyle="bold"
+            android:text="Popular this Week"
+            android:textColor="#333333"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText" />
 
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="300dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:id="@+id/imageView4"
-                            android:src="@drawable/tf1"
-                            android:scaleType="fitCenter" />
-                    </LinearLayout>
-
-                    <RelativeLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Elegant Pink Dress"
-                            android:textColor="#3b3d3e"
-                            android:textStyle="bold"
-                            android:textSize="14dp"
-                            android:layout_alignParentLeft="true"
-                            android:layout_centerVertical="true" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="$300.00"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerInParent="true"
-                            android:background="@drawable/big_grey_btn"
-                            android:padding="10dp"
-                            android:textSize="14dp"
-                            android:textColor="#fff" />
-
-                    </RelativeLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:layout_gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                card_view:cardCornerRadius="4dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="20dp">
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="+"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:textSize="20dp"
-                        android:textColor="#888" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Description"
-                        android:textColor="#3b3d3e"
-                        android:textStyle="bold"
-                        android:textSize="14dp"
-                        android:layout_alignParentRight="false"
-                        android:layout_alignWithParentIfMissing="false"
-                        android:layout_centerInParent="true"
-                        android:layout_marginLeft="30dp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/popular_recycler"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 
 
-                </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:layout_gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                card_view:cardCornerRadius="4dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="20dp">
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="20dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Color"
-                            android:textColor="#3b3d3e"
-                            android:textStyle="bold"
-                            android:textSize="14dp"
-                            android:layout_alignParentRight="false"
-                            android:layout_alignWithParentIfMissing="false"
-                            android:layout_centerInParent="true" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Choose a color for item"
-                        android:textColor="#999"
-                        android:textSize="14dp"
-                        android:layout_alignParentRight="false"
-                        android:layout_alignWithParentIfMissing="false"
-                        android:layout_centerInParent="true"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="10dp" />
-
-
-
-                    <RadioGroup
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="40dp">
-
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-                            <RadioButton
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:button="@android:color/transparent"
-                                android:background="@drawable/cc_pink"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginRight="5dp" />
-
-                            <RadioButton
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:button="@android:color/transparent"
-                                android:background="@drawable/cc_blue"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginRight="5dp" />
-
-                            <RadioButton
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:button="@android:color/transparent"
-                                android:background="@drawable/cc_yellow"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginRight="5dp" />
-                        </LinearLayout>
-
-                    </RadioGroup>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Size"
-                            android:textColor="#3b3d3e"
-                            android:textStyle="bold"
-                            android:textSize="14dp"
-                            android:layout_alignParentRight="false"
-                            android:layout_alignWithParentIfMissing="false"
-                            android:layout_centerInParent="true" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Size available for this item"
-                        android:textColor="#999"
-                        android:textSize="14dp"
-                        android:layout_alignParentRight="false"
-                        android:layout_alignWithParentIfMissing="false"
-                        android:layout_centerInParent="true"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="10dp" />
-
-
-
-                    <RadioGroup
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="40dp">
-
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-                            <RadioButton
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:button="@android:color/transparent"
-                                android:background="@drawable/big_grey_btn"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginRight="5dp"
-                                android:text="6"
-                                android:textAlignment="center" />
-
-                            <RadioButton
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:button="@android:color/transparent"
-                                android:background="@drawable/cc_blue"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginRight="5dp"
-                                android:text="8"
-                                android:textAlignment="center" />
-
-                            <RadioButton
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:button="@android:color/transparent"
-                                android:background="@drawable/big_grey_btn"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginRight="5dp"
-                                android:textAlignment="center"
-                                android:text="10" />
-                            <RadioButton
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:button="@android:color/transparent"
-                                android:background="@drawable/big_grey_btn"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginRight="5dp"
-                                android:textAlignment="center"
-                                android:text="12" />
-                            <RadioButton
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:button="@android:color/transparent"
-                                android:background="@drawable/big_grey_btn"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginRight="5dp"
-                                android:textAlignment="center"
-                                android:text="14" />
-                        </LinearLayout>
-
-                    </RadioGroup>
-
-
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:text="ADD TO CART"
-                android:background="@drawable/green_rec_bkg"
-                android:layout_gravity="center"
-                android:textColor="#ffffff"
-                android:textStyle="bold"
-                android:textSize="12dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
-                android:layout_marginRight="70dp"
-                android:layout_marginLeft="70dp"
-                android:clickable="true"
-                android:onClick="GoToConfirmOrderOnClick" />
-
-
-
-        </LinearLayout>
-    </ScrollView>
-
-</RelativeLayout>
+</ScrollView>
