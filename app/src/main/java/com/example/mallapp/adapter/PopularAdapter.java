@@ -22,32 +22,31 @@ import java.util.List;
 public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.PopularViewHolder> {
 
     private Context context;
-    private List<GetDatum> popularList;
+   GetDatum data[];
 
-    public PopularAdapter(Context context, List<GetDatum> popularList) {
+    public PopularAdapter(Context context, GetDatum[] data) {
         this.context = context;
-        this.popularList = popularList;
+        this.data = data;
     }
 
     @NonNull
     @Override
     public PopularViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.popular_recycler_items, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.popular_recycler_items, parent, false);
         // here we need to create a layout for recyclerview cell items.
-
 
         return new PopularViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PopularViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull PopularViewHolder holder,  int position) {
 
-        holder.popularName.setText(popularList.get(position).getName());
+        holder.popularName.setText(data[position].getName());
 
         // for image we add Glide library dependency for image fetching from server
 
-        Glide.with(context).load(popularList.get(position).getImageurl()).into(holder.popularImage);
+        Glide.with(context).load(data[position].getImageurl()).into(holder.popularImage);
 
       /*  holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +65,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.PopularV
 
     @Override
     public int getItemCount() {
-        return popularList.size();
+        return data.length;
     }
 
     public  static class PopularViewHolder extends RecyclerView.ViewHolder{
