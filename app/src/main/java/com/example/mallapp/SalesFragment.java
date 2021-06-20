@@ -18,10 +18,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 public class SalesFragment extends Fragment {
-    RecyclerView recyclerView;
+  /*  RecyclerView recyclerView;
     FirebaseRecyclerOptions<salesdta> options;
     FirebaseRecyclerAdapter<salesdta, MyViewHolder> adapter;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference;*/
 
 
     @Nullable
@@ -29,12 +29,11 @@ public class SalesFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_sale, container, false);
 
-
         return inflater.inflate(R.layout.fragment_sale, container, false);
 
     }
 
-    @Override
+   /* @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -66,5 +65,5 @@ public class SalesFragment extends Fragment {
         adapter.startListening();
         recyclerView.setAdapter(adapter);
 
-    }
+    }*/
 }
