@@ -17,20 +17,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MallApp">
+        <activity android:name=".FoodDetails"></activity>
+        <activity android:name=".Food_Details_one"></activity>
+        <activity android:name=".foodActivity"></activity>
         <activity
             android:name=".splashscreen"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".RegistrationActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity
             android:name=".LoginActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
@@ -38,7 +41,6 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.BROWSABLE" />
-
             </intent-filter>
         </activity>
         <activity
@@ -46,8 +48,6 @@
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-
             </intent-filter>
         </activity>
 

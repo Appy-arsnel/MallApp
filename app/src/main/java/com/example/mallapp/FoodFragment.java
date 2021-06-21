@@ -1,6 +1,7 @@
 package com.example.mallapp;
 
 
+import android.content.Intent;
 import android.media.MediaParser;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.loader.content.AsyncTaskLoader;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -54,13 +56,8 @@ import retrofit2.Callback;
 
 public class FoodFragment extends Fragment {
 
-    ApiInterface apiInterface;
 
-    RecyclerView popularRecyclerView, recommendedRecyclerView, allMenuRecyclerView;
-
-    PopularAdapter popularAdapter;
-
-    private static final String JSON_URL = "https://x8ki-letl-twmt.n7.xano.io/api:jwtfZ8_V/food_store";
+CardView foodstore;
 
 
     @Nullable
@@ -74,42 +71,17 @@ public class FoodFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        popularRecyclerView = view.findViewById(R.id.popular_recycler);
-        // apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        popularRecyclerView.setLayoutManager(layoutManager);
 
-
-        processdata();
-
-
+        foodstore=view.findViewById(R.id.foodstore);
+        foodstore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(),foodActivity.class));
+            }
+        });
 
     }
 
-    public void processdata() {
-
-        StringRequest request=new StringRequest(JSON_URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                GsonBuilder builder=new GsonBuilder();
-                Gson gson=builder.create();
-                GetDatum data[]=gson.fromJson(response,GetDatum[].class);
-                popularAdapter = new PopularAdapter(getContext(), data);
-                popularRecyclerView.setAdapter(popularAdapter);
-
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(),error.toString(),Toast.LENGTH_SHORT).show();
-            }
-        }
-        );
-
-        RequestQueue queue= Volley.newRequestQueue(getContext());
-      queue.add(request);
-    }
 
 
 }

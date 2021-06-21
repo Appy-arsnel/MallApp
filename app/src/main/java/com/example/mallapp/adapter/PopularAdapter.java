@@ -17,14 +17,12 @@ import com.example.mallapp.R;
 import com.example.mallapp.model.GetDatum;
 import com.example.mallapp.model.Popular;
 
-import java.util.List;
-
 public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.PopularViewHolder> {
 
     private Context context;
-   GetDatum data[];
+     Popular data[];
 
-    public PopularAdapter(Context context, GetDatum[] data) {
+    public PopularAdapter(Context context, Popular[] data) {
         this.context = context;
         this.data = data;
     }
@@ -34,7 +32,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.PopularV
     public PopularViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.popular_recycler_items, parent, false);
-        // here we need to create a layout for recyclerview cell items.
+
 
         return new PopularViewHolder(view);
     }
@@ -44,22 +42,22 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.PopularV
 
         holder.popularName.setText(data[position].getName());
 
-        // for image we add Glide library dependency for image fetching from server
 
         Glide.with(context).load(data[position].getImageurl()).into(holder.popularImage);
 
-      /*  holder.itemView.setOnClickListener(new View.OnClickListener() {
+       holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(context, FoodDetails.class);
-                i.putExtra("name", popularList.get(position).getName());
-                i.putExtra("price", popularList.get(position).getPrice());
-                i.putExtra("rating", popularList.get(position).getRating());
-                i.putExtra("image", popularList.get(position).getImageUrl());
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
+                i.putExtra("name",data[position].getName());
+                i.putExtra("rating", data[position].getRating());
+                i.putExtra("image", data[position].getImageurl());
+                i.putExtra("details", data[position].getDescription());
                 context.startActivity(i);
             }
-        });*/
+        });
 
     }
 
