@@ -5,18 +5,57 @@ import com.google.gson.annotations.SerializedName;
 
 public class Popular {
 
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("created_at")
+    @Expose
+    private Long createdAt;
     @SerializedName("name")
     @Expose
     private String name;
     @SerializedName("imageurl")
     @Expose
-    private String imageUrl;
+    private String imageurl;
     @SerializedName("rating")
     @Expose
     private String rating;
     @SerializedName("description")
     @Expose
     private String description;
+
+    /**
+     * No args constructor for use in serialization
+     */
+    public Popular() {
+    }
+
+
+    public Popular(Integer id, Long createdAt, String name, String imageurl, String rating, String description) {
+        super();
+        this.id = id;
+        this.createdAt = createdAt;
+        this.name = name;
+        this.imageurl = imageurl;
+        this.rating = rating;
+        this.description = description;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Long getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Long createdAt) {
+        this.createdAt = createdAt;
+    }
 
     public String getName() {
         return name;
@@ -26,12 +65,12 @@ public class Popular {
         this.name = name;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImageurl() {
+        return imageurl;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImageurl(String imageurl) {
+        this.imageurl = imageurl;
     }
 
     public String getRating() {
@@ -50,3 +89,4 @@ public class Popular {
         this.description = description;
     }
 }
+

@@ -1,31 +1,67 @@
 package com.example.mallapp.model;
 
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Recommended {
 
+
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("created_at")
+    @Expose
+    private Long createdAt;
     @SerializedName("name")
     @Expose
     private String name;
-    @SerializedName("imageUrl")
-    @Expose
-    private String imageUrl;
     @SerializedName("rating")
     @Expose
     private String rating;
-    @SerializedName("deliveryTime")
+    @SerializedName("time")
     @Expose
-    private String deliveryTime;
-    @SerializedName("deliveryCharges")
-    @Expose
-    private String deliveryCharges;
+    private String time;
     @SerializedName("price")
     @Expose
     private String price;
-    @SerializedName("note")
+    @SerializedName("imageurl")
     @Expose
-    private String note;
+    private String imageurl;
+    @SerializedName("description")
+    @Expose
+    private String description;
+
+
+    public Recommended() {
+    }
+    public Recommended(Integer id, Long createdAt, String name, String rating, String time, String price, String imageurl, String description) {
+        super();
+        this.id = id;
+        this.createdAt = createdAt;
+        this.name = name;
+        this.rating = rating;
+        this.time = time;
+        this.price = price;
+        this.imageurl = imageurl;
+        this.description = description;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Long getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Long createdAt) {
+        this.createdAt = createdAt;
+    }
 
     public String getName() {
         return name;
@@ -33,14 +69,6 @@ public class Recommended {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
     }
 
     public String getRating() {
@@ -51,20 +79,12 @@ public class Recommended {
         this.rating = rating;
     }
 
-    public String getDeliveryTime() {
-        return deliveryTime;
+    public String getTime() {
+        return time;
     }
 
-    public void setDeliveryTime(String deliveryTime) {
-        this.deliveryTime = deliveryTime;
-    }
-
-    public String getDeliveryCharges() {
-        return deliveryCharges;
-    }
-
-    public void setDeliveryCharges(String deliveryCharges) {
-        this.deliveryCharges = deliveryCharges;
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getPrice() {
@@ -75,12 +95,20 @@ public class Recommended {
         this.price = price;
     }
 
-    public String getNote() {
-        return note;
+    public String getImageurl() {
+        return imageurl;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setImageurl(String imageurl) {
+        this.imageurl = imageurl;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 }

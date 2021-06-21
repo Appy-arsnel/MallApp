@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FoodDetails">
-
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -25,13 +24,12 @@
         android:id="@+id/imageView5"
         android:layout_width="0dp"
         android:layout_height="256dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:adjustViewBounds="true"
-        android:scaleType="fitXY"
-
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
         app:srcCompat="@drawable/recommended1" />
 
     <TextView
@@ -67,6 +65,16 @@
         app:layout_constraintStart_toEndOf="@+id/ratingBar"
         app:layout_constraintTop_toTopOf="@+id/ratingBar" />
 
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/name"
+        app:srcCompat="@drawable/ic_like" />
+
     <TextView
         android:id="@+id/price"
         android:layout_width="wrap_content"
@@ -76,7 +84,8 @@
 
         android:fontFamily="sans-serif-black"
         android:textStyle="bold"
-        android:text="Details"        android:textColor="#3F9785"
+        android:text="199"
+        android:textColor="#3F9785"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
@@ -89,13 +98,32 @@
         android:layout_marginEnd="16dp"
 
         android:fontFamily="sans-serif-black"
-        android:textStyle="bold"
-        android:lineSpacingExtra="2dp"
+        android:textStyle="bold"        android:lineSpacingExtra="2dp"
         android:text="Nasi Padang is a Padang steamed rice served with various choices of pre-cooked dishes originated from West Sumatra, Indonesia. It is known across Indonesia as Nasi Padang, after the city of Padang the capital of West Sumatra province."
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/price"
         app:layout_constraintTop_toBottomOf="@+id/price" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/add_to_cart_bg"
+
+        android:fontFamily="sans-serif-black"
+        android:textStyle="bold"
+        android:text="Add to cart"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/textView8"
+        android:layout_marginTop="30dp"
+
+        app:layout_constraintEnd_toEndOf="@id/textView8"
+        app:layout_constraintStart_toStartOf="@id/textView8" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
