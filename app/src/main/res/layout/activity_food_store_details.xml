@@ -66,7 +66,7 @@
         app:layout_constraintTop_toTopOf="@+id/ratingBar" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/wishlist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -106,7 +106,7 @@
         app:layout_constraintTop_toBottomOf="@+id/price" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/baddtocart"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

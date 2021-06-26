@@ -17,9 +17,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MallApp">
-        <activity android:name=".FoodDetails"></activity>
-        <activity android:name=".Food_Details_one"></activity>
-        <activity android:name=".foodActivity"></activity>
+        <activity android:name=".Wishlist"></activity>
+        <activity android:name=".AddtoCart" />
+        <activity android:name=".chatbot" />
+        <activity android:name=".Home_chatwithus" />
+        <activity android:name=".FoodDetails" />
+        <activity android:name=".Food_Details_one" />
+        <activity android:name=".foodActivity" />
         <activity
             android:name=".splashscreen"
             android:theme="@style/Theme.AppCompat.NoActionBar">
@@ -33,7 +37,7 @@
         </activity>
         <activity
             android:name=".RegistrationActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".LoginActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">

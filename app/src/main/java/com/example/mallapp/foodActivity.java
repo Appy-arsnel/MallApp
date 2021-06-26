@@ -39,14 +39,8 @@ public class foodActivity extends AppCompatActivity {
         setContentView(R.layout.activity_food);
         popularRecyclerView = findViewById(R.id.popular_recycler);
         recommendedRecyclerView = findViewById(R.id.recyclerecomweek);
-        back = findViewById(R.id.back2);
-        back.bringToFront();
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),FoodFragment.class));
-            }
-        });
+
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
 
         popularRecyclerView.setLayoutManager(layoutManager);
