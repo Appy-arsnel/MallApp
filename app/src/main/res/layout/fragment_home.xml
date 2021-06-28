@@ -80,12 +80,16 @@
                android:layout_width="0dp"
                android:layout_height="match_parent"
                android:layout_margin="10dp"
-               android:layout_weight="1">
+               android:layout_weight="1"
+               android:id="@+id/eventcard"
+               >
 
                <RelativeLayout
                    android:layout_width="match_parent"
                    android:layout_height="match_parent"
-                   android:background="#2a7fe8">
+                   android:background="#2a7fe8"
+
+                   >
 
                    <TextView
                        android:id="@+id/textView4"
