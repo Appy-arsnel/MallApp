@@ -1,10 +1,11 @@
 package com.example.mallapp.adapter;
 
 import android.content.Context;
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,70 +13,134 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.mallapp.FoodDetails;
 import com.example.mallapp.R;
-import com.example.mallapp.model.Cartdata;
-import com.example.mallapp.model.Popular;
+import com.example.mallapp.Cartdata;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.common.net.InternetDomainName;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-public class CartAdapter extends RecyclerView.Adapter<CartAdapter.PopularViewHolder> {
+import java.util.HashMap;
 
+import static android.content.Context.MODE_PRIVATE;
+
+public class CartAdapter extends FirebaseRecyclerAdapter<Cartdata, CartAdapter.cardViewholder> {
     private Context context;
-    Cartdata data[];
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://mall-app-8b01d-default-rtdb.asia-southeast1.firebasedatabase.app/");
+     DatabaseReference reff;
 
-    public CartAdapter(Context context, Cartdata[] data) {
+
+    public CartAdapter(@NonNull FirebaseRecyclerOptions<Cartdata> options, Context context) {
+        super(options);
         this.context = context;
-        this.data = data;
+
     }
+    Integer no;
+
+
+    @Override
+    protected void onBindViewHolder(@NonNull cardViewholder holder, int position, @NonNull Cartdata model) {
+        no=model.getNumber();
+
+
+        String uid=FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        holder.delete.bringToFront();
+
+
+
+
+        holder.Name.setText(model.getName());
+        holder.Rating.setText(model.getRating());
+
+        holder.Price.setText(model.getPrice());
+        Glide.with(context).load(model.getImageurl()).into(holder.AddedImage);
+        holder.number.setText(String.valueOf(model.getNumber()));
+        reff=firebaseDatabase.getReference().child("User").child(uid).child("Cart");
+        holder.plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                no++;
+
+
+                HashMap<String,Object> result=new HashMap<>();
+                result.put("number",no);
+                result.put("price",String.valueOf(Integer.parseInt(model.getPrice())+Integer.parseInt(model.getPrice())));
+                reff.child(getRef(position).getKey()).updateChildren(result);
+
+            }
+        });
+        holder.minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                no--;
+
+
+                HashMap<String,Object> result=new HashMap<>();
+                result.put("number",no);
+                result.put("price",String.valueOf(Integer.parseInt(model.getPrice())-Integer.parseInt(model.getPrice())));
+                reff.child(getRef(position).getKey()).updateChildren(result);
+
+
+                if(no==0){
+                    reff.child(getRef(position).getKey()).removeValue();
+                }
+            }
+
+        });
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reff.child(getRef(position).getKey()).removeValue();
+            }
+        });
+
+
+
+    }
+
+
 
     @NonNull
     @Override
-    public PopularViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.popular_recycler_items, parent, false);
-
-
-        return new PopularViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull PopularViewHolder holder, int position) {
-
-        holder.popularName.setText(data[position].getName());
-
-
-        Glide.with(context).load(data[position].getImageurl()).into(holder.popularImage);
-
-        /*holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(context, FoodDetails.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                i.putExtra("name", data[position].getName());
-                i.putExtra("rating", data[position].getRating());
-                i.putExtra("image", data[position].getImageurl());
-                context.startActivity(i);
-            }
-        });*/
+    public CartAdapter.cardViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.content_addedtocart, parent, false);
+        return new CartAdapter.cardViewholder(view);
 
     }
 
-    @Override
-    public int getItemCount() {
-        return data.length;
-    }
 
-    public static class PopularViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView popularImage;
-        TextView popularName;
+    public class cardViewholder extends RecyclerView.ViewHolder {
 
-        public PopularViewHolder(@NonNull View itemView) {
+
+        ImageView AddedImage;
+        TextView Name, Rating, Price,number;
+
+
+        ImageButton plus,minus;
+        ImageView delete;
+
+        public cardViewholder(@NonNull View itemView) {
             super(itemView);
 
-            popularName = itemView.findViewById(R.id.all_menu_name);
-            popularImage = itemView.findViewById(R.id.all_menu_image);
+            AddedImage = itemView.findViewById(R.id.addimage);
+            Name = itemView.findViewById(R.id.addname);
+            Rating = itemView.findViewById(R.id.addrating);
+            number = itemView.findViewById(R.id.addnumber);
+            Price = itemView.findViewById(R.id.addprice);
+            plus = itemView.findViewById(R.id.addplus);
+            minus = itemView.findViewById(R.id.addminus);
+            delete = itemView.findViewById(R.id.deletecart);
+
 
         }
     }
+
 }

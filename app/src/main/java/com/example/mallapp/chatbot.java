@@ -107,7 +107,7 @@ public class chatbot extends AppCompatActivity {
             // url for our brain
             // make sure to add mshape for uid.
             // make sure to add your url.
-            String url = "http://api.brainshop.ai/get?bid=157218&key=Ny9m7s7ZtrQnyLqt&uid=[uid]&msg=[msg]" + userMsg;
+            String url = "http://api.brainshop.ai/get?bid=157218&key=Ny9m7s7ZtrQnyLqt&uid=[uid]&msg=["+userMsg+"]";
 
             // creating a variable for our request queue.
             RequestQueue queue = Volley.newRequestQueue(chatbot.this);
@@ -138,7 +138,7 @@ public class chatbot extends AppCompatActivity {
                 public void onErrorResponse(VolleyError error) {
                     // error handling.
                     messageModalArrayList.add(new MessageModal("Sorry no response found", BOT_KEY));
-                    Toast.makeText(chatbot.this, "No response from the bot..", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(chatbot.this, "No response from the bot.."+error, Toast.LENGTH_LONG).show();
                 }
             });
 

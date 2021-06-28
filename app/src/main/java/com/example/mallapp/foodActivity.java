@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -76,9 +77,14 @@ public class foodActivity extends AppCompatActivity {
             }
         }
         );
-
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                6000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
+        );
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         queue.add(request);
+
     }
 
 
@@ -101,8 +107,13 @@ public class foodActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
             }
         }
-        );
 
+        );
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                6000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
+        );
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         queue.add(request);
     }

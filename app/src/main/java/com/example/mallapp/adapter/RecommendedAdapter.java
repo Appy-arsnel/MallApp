@@ -56,6 +56,7 @@ public class RecommendedAdapter extends RecyclerView.Adapter<RecommendedAdapter.
                 i.putExtra("rating", data[position].getRating());
                 i.putExtra("image", data[position].getImageurl());
                 i.putExtra("description", data[position].getDescription());
+                i.putExtra("id", data[position].getId().toString());
                 context.startActivity(i);
             }
         });

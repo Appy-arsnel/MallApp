@@ -77,7 +77,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.10"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.10"
     annotationProcessor 'androidx.room:room-compiler:2.2.5'
-
+    implementation 'com.jakewharton:butterknife:10.2.3'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
 
 }
 apply plugin: 'com.google.gms.google-services'
