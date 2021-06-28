@@ -15,6 +15,7 @@ public class HomeFragment extends Fragment {
 
 
     CardView cardchat;
+    CardView event;
 
 
 
@@ -30,10 +31,18 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         cardchat=view.findViewById(R.id.cardchat);
+
         cardchat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(),Home_chatwithus.class));
+            }
+        });
+        event=view.findViewById(R.id.eventcard);
+        event.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(),event.class));
             }
         });
 
