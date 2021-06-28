@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.VoiceInteractor;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -19,6 +20,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.facebook.AccessToken;
 
@@ -48,6 +56,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -57,7 +67,9 @@ public class LoginActivity extends AppCompatActivity {
     private ImageView loginButton;
     private CallbackManager mCallbackManager;
     FirebaseAuth firebaseAuth;
-  private ImageView googlereg;
+    private static final String userurl = "https://x8ki-letl-twmt.n7.xano.io/api:jwtfZ8_V/user";
+
+    private ImageView googlereg;
 
     private GoogleSignInClient mGoogleSignInClient;
 
@@ -296,7 +308,7 @@ public class LoginActivity extends AppCompatActivity {
             boolean emailVerified = user.isEmailVerified();
 
                 reff.child("User").child(uid).setValue(users);
-
+                userxano(email,name);
 
             // The user's ID, unique to the Firebase project. Do NOT use this value to
             // authenticate with your backend server, if you have one. Use
@@ -304,6 +316,36 @@ public class LoginActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    private void userxano(String em,String name) {
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        StringRequest request=new StringRequest(Request.Method.POST, userurl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("Response", response);
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("ERROR","error => "+error.toString());
+            }
+        }
+        ){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("email", em);
+                params.put("name",name );
+
+
+                return params;
+            }
+        };
+        queue.add(request);
 
     }
 

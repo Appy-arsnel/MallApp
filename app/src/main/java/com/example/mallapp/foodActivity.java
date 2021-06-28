@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -39,14 +40,8 @@ public class foodActivity extends AppCompatActivity {
         setContentView(R.layout.activity_food);
         popularRecyclerView = findViewById(R.id.popular_recycler);
         recommendedRecyclerView = findViewById(R.id.recyclerecomweek);
-        back = findViewById(R.id.back2);
-        back.bringToFront();
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),FoodFragment.class));
-            }
-        });
+
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
 
         popularRecyclerView.setLayoutManager(layoutManager);
@@ -82,9 +77,14 @@ public class foodActivity extends AppCompatActivity {
             }
         }
         );
-
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                6000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
+        );
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         queue.add(request);
+
     }
 
 
@@ -107,8 +107,13 @@ public class foodActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
             }
         }
-        );
 
+        );
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                6000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
+        );
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         queue.add(request);
     }
