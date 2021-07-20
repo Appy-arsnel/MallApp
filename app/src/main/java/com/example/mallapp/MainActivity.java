@@ -171,6 +171,8 @@ public class MainActivity extends AppCompatActivity {
                         ft = getSupportFragmentManager().beginTransaction();
                         ft.replace(R.id.flFragment, currentFragment);
                         ft.commit();
+                        bottomNavigationView.setItemSelected(R.id.homess,true);
+
                         break;
 
 

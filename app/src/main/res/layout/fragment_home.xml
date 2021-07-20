@@ -45,7 +45,8 @@
                android:layout_width="0dp"
                android:layout_height="match_parent"
                android:layout_margin="10dp"
-               android:layout_weight="1">
+               android:layout_weight="1"
+               android:id="@+id/attrc">
 
                <RelativeLayout
                    android:layout_width="match_parent"
@@ -196,10 +197,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
             <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:id="@+id/homemap">
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -227,10 +229,12 @@
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:id="@+id/emergencyhome"
+                >
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -247,6 +251,7 @@
                         android:textSize="24sp"
                         android:textColor="@color/black"
                         app:fontFamily="sans-serif-black" />
+
                     <ImageView
                         android:id="@+id/airplane"
                         android:layout_width="75dp"

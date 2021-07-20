@@ -1,6 +1,7 @@
 package com.example.mallapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,9 @@ public class HomeFragment extends Fragment {
 
     CardView cardchat;
     CardView event;
+    CardView emergenc;
+    String address;
+    CardView attrct;
 
 
 
@@ -46,9 +50,23 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        emergenc=view.findViewById(R.id.emergencyhome);
+        emergenc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+               startActivity(new Intent(getContext(), com.example.mallapp.emergency.class));
+            }
+        });
 
+        attrct=view.findViewById(R.id.attrc);
+        attrct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                startActivity(new Intent(getContext(), Attraction.class));
+            }
+        });
 
     }
 }

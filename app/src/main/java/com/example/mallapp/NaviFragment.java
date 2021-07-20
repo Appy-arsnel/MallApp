@@ -1,5 +1,8 @@
 package com.example.mallapp;
 
+import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +12,18 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 import com.squareup.picasso.Picasso;
 
 public class NaviFragment extends Fragment {
-  ImageView img;
+    Fragment currentFragment = null;
+    FragmentTransaction ft;
+    ChipNavigationBar bottomNavigationView;
 
+    private String address;
 
     @Nullable
     @Override
@@ -29,7 +38,20 @@ public class NaviFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        img=view.findViewById(R.id.imgdd);
-        Picasso.get().load("gs://mall-app-8b01d.appspot.com/ntcc/Lets get Started/a1.png").into(img);
+        address="DLF Mall,Baird Place, Delhi Cantonment, New Delhi, Delhi 110010";
+        String url = "http://maps.google.com/maps?daddr="+address;
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,  Uri.parse(url));
+        startActivity(intent);
+
+        currentFragment = new HomeFragment();
+        ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.flFragment, currentFragment);
+        ft.commit();
+
+
     }
+
+
+
+
 }

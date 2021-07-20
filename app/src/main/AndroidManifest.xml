@@ -10,6 +10,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:name=".OfflineFirebase"
         android:allowBackup="true"
@@ -19,7 +22,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MallApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".event"></activity>
+        <activity android:name=".Attractiondetails"></activity>
+        <activity android:name=".Attraction" />
+        <activity android:name=".Shopmall" />
+        <activity android:name=".emergency" />
+        <activity android:name=".event" />
         <activity android:name=".Wishlist" />
         <activity android:name=".AddtoCart" />
         <activity android:name=".chatbot" />

@@ -37,15 +37,17 @@ ImageView beck,whatsappimg,botimg;
         whatsappimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean installed = isAppInstalled("com.whatsapp");
+                boolean installed = isAppInstalled("com.whatsapp");// gives value true if whatsapp is installed
+                                                                      //in phone and vise -versa
 
                 if (installed){
                 Toast.makeText(getApplicationContext(),"whatsap opened",Toast.LENGTH_SHORT).show();
-                Intent intentWhatsapp = new Intent(Intent.ACTION_VIEW);
+                Intent intentWhatsapp = new Intent(Intent.ACTION_VIEW);//Intent for Whatsapp is created
                 String url = "https://chat.whatsapp.com/https://chat.whatsapp.com/Jt5X2QFBgLi2twZWUq2F3Y";
                 intentWhatsapp.setData(Uri.parse(url));
                 intentWhatsapp.setPackage("com.whatsapp");
-                startActivity(intentWhatsapp);}
+                startActivity(intentWhatsapp);//starts the intent whatsapp
+                }
             }
         });
         botimg.setOnClickListener(new View.OnClickListener() {

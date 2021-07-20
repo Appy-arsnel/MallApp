@@ -1,5 +1,6 @@
 package com.example.mallapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,5 +24,14 @@ public class    ShopFragment extends Fragment {
      View rootView=inflater.inflate(R.layout.fragment_shop,container,false);
 
         return inflater.inflate(R.layout.fragment_shop,container,false);
+
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        startActivity(new Intent(getContext(),Shopmall.class));
+
     }
 }
