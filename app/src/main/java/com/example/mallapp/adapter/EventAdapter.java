@@ -64,9 +64,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.PopularViewH
                 Toast.makeText(context, "set reminder", Toast.LENGTH_SHORT).show();
 
 
-                Intent CalendarIntent = new Intent(Intent.ACTION_VIEW);
-                CalendarIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(CalendarIntent);
+                Intent intent = new Intent(Intent.ACTION_EDIT);
+                intent.setType("vnd.android.cursor.item/event");
+                intent.putExtra(CalendarContract.Events.TITLE, data[position].getTitle());
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra(CalendarContract.Events.DESCRIPTION,data[position].getDescription());
+                context.startActivity(intent);
 
 
             }
